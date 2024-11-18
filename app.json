@@ -2,6 +2,7 @@
   "expo": {
     "name": "native-test",
     "slug": "native-test",
+    "entryPoint": "expo-router/entry",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

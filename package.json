@@ -1,7 +1,7 @@
 {
   "name": "native-test",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "startc": "expo start -c",
@@ -12,6 +12,9 @@
   "dependencies": {
     "@react-native-picker/picker": "^2.9.0",
     "expo": "~52.0.7",
+    "expo-constants": "^17.0.3",
+    "expo-linking": "^7.0.2",
+    "expo-router": "^4.0.6",
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
     "react-native": "0.76.2",
