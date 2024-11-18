@@ -63,30 +63,37 @@ const AnimeTable: React.FC<AnimeTableProps> = ({
         });
     }, [ filteredData, sortField, sortDirection ]);
 
-    const renderHeaderCell = (field: keyof Anime, label: string) => (
-        <TouchableOpacity
-            style={styles.headerCellContainer}
-            onPress={() => {
-                setSortField(field);
-                setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-            }}
-        >
-            <View style={styles.headerCellContent}>
-                <Text
-                    style={[
-                        styles.headerCellText,
-                        sortField === field && styles.headerCellTextActive,
-                    ]}
-                >
-                    {label}
-                </Text>
-                <Image
-                    source={sortField === field ? sortActive : sort}
-                    style={styles.sortIcon}
-                />
-            </View>
-        </TouchableOpacity>
-    );
+    const renderHeaderCell = (field: keyof Anime, label: string) => {
+        const dynamicStyle = `column${ label }` in styles
+            ? styles[ `column${ label }` as keyof typeof styles ]
+            : undefined;
+
+        return (
+            <TouchableOpacity
+                style={ [ styles.cell, dynamicStyle ] }
+                onPress={ () => {
+                    setSortField(field);
+                    setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+                } }
+            >
+                <View style={ styles.headerCellContent }>
+                    <Text
+                        style={ [
+                            styles.headerCellText,
+                            sortField === field && styles.headerCellTextActive,
+                        ] }
+                    >
+                        { label }
+                    </Text>
+                    <Image
+                        source={ sortField === field ? sortActive : sort }
+                        style={ styles.sortIcon }
+                    />
+                </View>
+            </TouchableOpacity>
+        );
+    };
+
 
     return (
         <ScrollView horizontal>

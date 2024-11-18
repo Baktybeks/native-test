@@ -6,17 +6,17 @@ import FilterPanel from '../components/FilterPanel';
 import { Animes, fetchAnimes } from '../utils/api';
 
 const MainPage: React.FC = () => {
-    const [data, setData] = useState<Animes[]>([]);
-    const [filteredData, setFilteredData] = useState<Animes[]>([]);
-    const [page, setPage] = useState<number>(1);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [startYear, setStartYear] = useState<string>('');
-    const [endYear, setEndYear] = useState<string>('');
-    const [categories, setCategories] = useState<string[]>([]);
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [ data, setData ] = useState<Animes[]>([]);
+    const [ filteredData, setFilteredData ] = useState<Animes[]>([]);
+    const [ page, setPage ] = useState<number>(1);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+    const [ startYear, setStartYear ] = useState<string>('');
+    const [ endYear, setEndYear ] = useState<string>('');
+    const [ categories, setCategories ] = useState<string[]>([]);
+    const [ selectedCategories, setSelectedCategories ] = useState<string[]>([]);
 
     useEffect(() => {
-        const loadData = async () => {
+        const loadData = async() => {
             setIsLoading(true);
             const animeData = await fetchAnimes(page);
             setData(animeData);
@@ -30,7 +30,7 @@ const MainPage: React.FC = () => {
             setIsLoading(false);
         };
         loadData();
-    }, [page]);
+    }, [ page ]);
 
     useEffect(() => {
         let filtered = data;
@@ -51,7 +51,7 @@ const MainPage: React.FC = () => {
         }
 
         setFilteredData(filtered);
-    }, [data, selectedCategories, startYear, endYear]);
+    }, [ data, selectedCategories, startYear, endYear ]);
 
     const hasPrevious = page > 1;
     const hasNext = filteredData.length > 0;
@@ -59,26 +59,26 @@ const MainPage: React.FC = () => {
     return (
         <View style={styles.container}>
             <FilterPanel
-                startYear={startYear}
-                setStartYear={setStartYear}
-                endYear={endYear}
-                setEndYear={setEndYear}
-                categories={categories}
-                selectedCategories={selectedCategories}
-                setSelectedCategories={setSelectedCategories}
+                startYear={ startYear }
+                setStartYear={ setStartYear }
+                endYear={ endYear }
+                setEndYear={ setEndYear }
+                categories={ categories }
+                selectedCategories={ selectedCategories }
+                setSelectedCategories={ setSelectedCategories }
             />
             <AnimeTable
-                data={data}
-                isLoading={isLoading}
-                startYear={startYear}
-                endYear={endYear}
-                selectedCategories={selectedCategories}
+                data={ data }
+                isLoading={ isLoading }
+                startYear={ startYear }
+                endYear={ endYear }
+                selectedCategories={ selectedCategories }
             />
             <Pagination
-                page={page}
-                setPage={setPage}
-                hasPrevious={hasPrevious}
-                hasNext={hasNext}
+                page={ page }
+                setPage={ setPage }
+                hasPrevious={ hasPrevious }
+                hasNext={ hasNext }
             />
         </View>
     );
@@ -89,12 +89,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         backgroundColor: '#f5f5f5',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
-        textAlign: 'center',
     },
 });
 

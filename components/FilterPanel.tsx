@@ -56,7 +56,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                         {category}
                     </Text>
                 ))}
-                <Button title="Clear" onPress={() => setSelectedCategories([])} />
+                <Button
+                    title="Clear"
+                    onPress={() => {
+                        setSelectedCategories([]);
+                        setStartYear('');
+                        setEndYear('');
+                    }}
+                />
             </View>
         </View>
     );
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     picker: {
-        height: 40,
+        height: 50,
         marginBottom: 8,
     },
     selectedCategories: {
